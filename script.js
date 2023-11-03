@@ -5,7 +5,11 @@ function showTab(activeTab, inactiveTab) {
     document.getElementById('result').textContent = '';
 }
 
-function convertArea() {
+function convertArea(event) {
+    if (event) {
+        event.preventDefault();
+    }
+
     const inputValue = parseFloat(document.getElementById('inputValue').value);
     if (isNaN(inputValue)) {
         alert('Invalid input. Please enter a valid number.');
@@ -28,17 +32,12 @@ function convertArea() {
 
     document.getElementById('result').textContent = `${inputValue} ${activeTab === 'marlaTab' ? 'Marla' : 'Square Feet'} is equal to ${convertedValue.toFixed(2)} ${unit}.`;
 }
-// ... your existing code ...
 
 // Add an event listener for the "keydown" event on the input field
 document.getElementById('inputValue').addEventListener('keydown', function(event) {
     // Check if the pressed key is "Enter" (key code 13)
     if (event.keyCode === 13) {
-        // Call the convertTemperature function if "Enter" key is pressed
-        convertArea();
+        // Call the convertArea function if "Enter" key is pressed
+        convertArea(event);
     }
 });
-
-// ... rest of your existing code ...
-
-
